@@ -7,6 +7,7 @@ package org.etiya.entities.concretes;
 // Sabitler (Constants) => UPPER_CASE MAX_VALUE
 // Paketler => lowercase.package
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book
-{
+@Table(name = "books")
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
+    @Column(name="name")
     String name;
+    @Column(name="pageCount")
     int pageCount;
+    @ManyToOne()
+    @JoinColumn(name="author_id")
     Author author;
 }
 
