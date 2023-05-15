@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BookManagerTest {
 
@@ -42,12 +42,14 @@ class BookManagerTest {
     }
     //15:10
 
+    // Yorum satıları
+    // summary
     @Test
-    void addWithAuthorHasFiveBooksShouldThrowError(){
+    void addWithAuthorHasFiveBooksShouldThrowError() {
         Author author = new Author();
         author.setId(1);
         List<Book> books = new ArrayList<>();
-        for(int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             books.add(new Book());
         }
         author.setBooks(books);

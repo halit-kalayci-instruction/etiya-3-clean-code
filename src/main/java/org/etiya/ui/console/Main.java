@@ -44,6 +44,8 @@ public class Main {
         authorService.add(request);
         //authorService.add(author);
 
+
+
         for(Author authorInDb: authorService.getAll()){
             System.out.println(authorInDb.getName());
         }

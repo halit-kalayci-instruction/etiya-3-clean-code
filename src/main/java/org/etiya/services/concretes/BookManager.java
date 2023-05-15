@@ -19,17 +19,22 @@ public class BookManager implements BookService {
         this.authorService = authorService;
     }
 
+    /**
+     * Function to add book to the database.
+     * @param book Book that is wanted to be in database.
+     */
     @Override
     public void add(Book book) {
-        // bir yazarın 5'den fazla kitabı bulunmamlıdır.
-        // authorId
         authorMustHaveLessThanFiveBooks(book.getAuthor().getId());
         bookRepository.add(book);
         System.out.println("Kitap eklendi..");
     }
 
 
-
+    /**
+     * Business rule to check if author has more than five books.
+     * @param authorId AuthorId to check
+     */
     public void authorMustHaveLessThanFiveBooks(int authorId){
         // veritabanına gidip id ile author'ı bulmak ve kitap sayısını almak.
         int bookCount = authorService.getBookCountByAuthorId(authorId);
