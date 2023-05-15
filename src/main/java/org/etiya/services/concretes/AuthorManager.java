@@ -24,12 +24,11 @@ public class AuthorManager implements AuthorService
         // Business Rules, CCC, Validation
         // İŞ KODLARI
         // aynı tckn sahibi iki author bulunamaz
-        checkIfAuthorWithSameNationalityIdExists(request.getNationalityId());
         // Mapping
         // Manual Mapping => ModelMapper
+        checkIfAuthorWithSameNationalityIdExists(request.getNationalityId());
         Author author = new
                 Author(1,request.getName(), request.getSurname(), request.getAge(), request.getNationalityId(), new ArrayList<>());
-
         authorRepository.add(author);
         System.out.println("Author eklendi.");
     }
@@ -54,8 +53,7 @@ public class AuthorManager implements AuthorService
 
     public void checkIfAuthorWithSameNationalityIdExists(String nationalityId) {
         if(authorRepository.getAuthorByNationalityIdentity(nationalityId) != null){
-            System.out.println("Bu TCKN ile bir author zaten mevcut..");
-            Thread.currentThread().stop();
+            throw new RuntimeException("Bu TCKN ile bir author zaten mevcut..");
         }
     }
 }

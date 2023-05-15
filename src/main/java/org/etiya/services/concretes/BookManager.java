@@ -7,6 +7,9 @@ import org.etiya.repositories.abstracts.BookRepository;
 import org.etiya.services.abstracts.AuthorService;
 import org.etiya.services.abstracts.BookService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookManager implements BookService {
     private BookRepository bookRepository;
     private AuthorService authorService;
@@ -31,8 +34,7 @@ public class BookManager implements BookService {
         // veritabanına gidip id ile author'ı bulmak ve kitap sayısını almak.
         int bookCount = authorService.getBookCountByAuthorId(authorId);
         if(bookCount > 5){
-            System.out.println("Bir yazar 5'den fazla kitaba sahip olamaz.");
-            Thread.currentThread().stop();
+            throw new RuntimeException("Author 5'den fazla kitaba sahip olamaz.");
         }
     }
 }
